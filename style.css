@@ -9,6 +9,7 @@ body {
   line-height: 1.6;
   color: #222;
   background: #f9f9fb;
+  transition: background 0.5s ease, color 0.5s ease;
 }
 
 .container {
@@ -85,4 +86,41 @@ footer {
 
 .note {
   font-style: italic;
+}
+
+#fancy-toggle {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  background: #fff;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem 0.6rem;
+  border-radius: 50%;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  color: #444;
+  font-size: 1.1rem;
+  transition: transform 0.3s ease;
+}
+
+#fancy-toggle:hover {
+  transform: rotate(20deg);
+}
+
+body.fancy {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #f0f0f0;
+}
+
+body.fancy a {
+  color: #ffeb3b;
+}
+
+body.fancy section h2 {
+  color: #fff;
+  border-bottom-color: rgba(255, 255, 255, 0.4);
+}
+
+body.fancy footer {
+  color: #eee;
 }
