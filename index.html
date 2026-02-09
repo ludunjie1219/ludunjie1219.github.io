@@ -1,195 +1,536 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dunjie Lu</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="style.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-      integrity="sha512-5tKX1c2+cTyTX0bYKT1eZqUPVHtV6nRvWmvMRGsiE9zMDFMvx6bMpiKFF9volG/Gp2gbf+5Q5e0siJY9hw3cZQ=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-  </head>
-  <body>
-    <button id="fancy-toggle" aria-label="Toggle fancy mode">
-      <i class="fa-solid fa-wand-magic-sparkles"></i>
-    </button>
-    <header class="container">
-      <h1>Dunjie Lu</h1>
-      <div class="contact">
-        <a href="mailto:ludj1219@gmail.com"
-          ><i class="fa-solid fa-envelope"></i> ludj1219@gmail.com</a
-        >
-        <a href="tel:+8615914502226"
-          ><i class="fa-solid fa-phone"></i> +86 159-1450-2226</a
-        >
-        <a href="https://ludunjie1219.github.io"
-          ><i class="fa-solid fa-globe"></i> ludunjie1219.github.io</a
-        >
-        <a href="https://github.com/ludunjie1219"
-          ><i class="fa-brands fa-github"></i> ludunjie1219</a
-        >
-      </div>
-    </header>
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dunjie Lu - Computer Vision & NLP Researcher</title>
+    <meta name="description" content="Ph.D. student at The University of Hong Kong specializing in Computer-Use Agents and Vision-Language Models">
 
-    <main class="container">
-      <section>
-        <h2>Education</h2>
-        <div class="item">
-          <div class="left">
-            <strong
-              ><a href="https://www.sysu.edu.cn/">Sun Yat-sen University</a>,
-              Guangzhou&middot;China</strong
-            >
-          </div>
-          <div class="right">09/2021 &mdash; Present</div>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <!-- Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            overflow-x: hidden;
+            background: #000000;
+            color: #ffffff;
+            cursor: none;
+        }
+
+        /* Custom Cursor */
+        .cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #8b5cf6;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.2s ease, width 0.3s ease, height 0.3s ease;
+            mix-blend-mode: difference;
+        }
+
+        .cursor-follower {
+            position: fixed;
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            transition: transform 0.4s cubic-bezier(0.75, 0, 0.25, 1);
+            mix-blend-mode: difference;
+        }
+
+        .cursor.hover {
+            transform: scale(1.5);
+            background: rgba(139, 92, 246, 0.2);
+        }
+
+        /* Three.js Canvas */
+        #webgl-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        /* Glass-morphism */
+        .glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        .glass-strong {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        /* Gradient Text */
+        .gradient-text {
+            background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 50%, #06b6d4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 200% auto;
+            animation: gradient-shift 3s ease infinite;
+        }
+
+        @keyframes gradient-shift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* Kinetic Typography */
+        .kinetic-text span {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(50px) rotateX(-90deg);
+            animation: kinetic-reveal 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+
+        @keyframes kinetic-reveal {
+            to {
+                opacity: 1;
+                transform: translateY(0) rotateX(0);
+            }
+        }
+
+        /* Scroll Reveal */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .scroll-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 1s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        /* Hover Effects */
+        .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .hover-lift:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 60px rgba(139, 92, 246, 0.3);
+        }
+
+        /* Badge Animation */
+        .badge-pulse {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.7;
+            }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #000;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #8b5cf6, #ec4899);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, #a78bfa, #f472b6);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .cursor, .cursor-follower {
+                display: none;
+            }
+        }
+
+        /* Link Underline Animation */
+        .link-underline {
+            position: relative;
+            text-decoration: none;
+        }
+
+        .link-underline::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #8b5cf6, #ec4899);
+            transition: width 0.3s ease;
+        }
+
+        .link-underline:hover::after {
+            width: 100%;
+        }
+
+        /* Timeline */
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -25px;
+            top: 0;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(180deg, #8b5cf6, #ec4899);
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -31px;
+            top: 8px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: #8b5cf6;
+            border: 3px solid #000;
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.8);
+        }
+    </style>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Space Grotesk', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <!-- Three.js Background -->
+    <canvas id="webgl-background"></canvas>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 glass-strong">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold gradient-text">DL</div>
+            <div class="hidden md:flex space-x-8">
+                <a href="#about" class="link-underline hover:text-purple-400 transition">About</a>
+                <a href="#education" class="link-underline hover:text-purple-400 transition">Education</a>
+                <a href="#publications" class="link-underline hover:text-purple-400 transition">Publications</a>
+                <a href="#awards" class="link-underline hover:text-purple-400 transition">Awards</a>
+            </div>
         </div>
-        <p>
-          B.S. in Computer Science, GPA 4.23 / 5.00 &nbsp; Rank 3 / 291 (Top 1%)
-        </p>
-      </section>
+    </nav>
 
-      <section>
-        <h2>Publications</h2>
-        <p class="note">* denotes equal contribution</p>
-        <ol>
-          <li>
-            <strong>(ICLR 2025 Spotlight)</strong> AgentTrek: Agent Trajectory
-            Synthesis via Guiding Replay with Web Tutorials.<br />
-            Yiheng Xu*, <strong>Dunjie Lu*</strong>, Zhennan Shen*, Junli Wang,
-            Zekun Wang, Yuchen Mao, Caiming Xiong, Tao Yu<br />
-            <a href="https://agenttrek.github.io/">Page</a> &middot;
-            <a href="https://openreview.net/forum?id=EEgYUccwsV">PDF</a>
-          </li>
-          <li>
-            <strong>(ICML 2025 Poster)</strong> Aguvis: Unified Pure Vision
-            Agents for Autonomous GUI Interaction.<br />
-            Yiheng Xu*, Zekun Wang*, Junli Wang*, <strong>Dunjie Lu</strong>,
-            Tianbao Xie, Amrita Saha, Doyen Sahoo, Tao Yu, Caiming Xiong<br />
-            <a href="https://aguvis-project.github.io/">Page</a> &middot;
-            <a href="https://openreview.net/forum?id=FHtHH4ulEQ">PDF</a>
-          </li>
-          <li>
-            <strong>(Neurips 2025 UnderReview)</strong> OpenCUA: Open
-            Foundations for Computer-Use Agents.<br />
-            Xinyuan Wang*, Bowen Wang*, <strong>Dunjie Lu*</strong>, Junlin
-            Yang*, Tianbao Xie*, Junli Wang* ... Tao Yu<br />
-            <a href="https://opencua.xlang.ai/">Page</a> &middot;
-            <a
-              href="https://github.com/XinyuanWangCS/OpenCUA-Website/blob/main/static/pdf/OpenCUA_arxiv.pdf"
-              >PDF</a
-            >
-          </li>
-        </ol>
-      </section>
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center justify-center relative overflow-hidden">
+        <div class="max-w-5xl mx-auto px-6 text-center z-10">
+            <div class="inline-block glass px-6 py-2 rounded-full mb-8 badge-pulse">
+                <span class="text-sm font-mono text-purple-400">Ph.D. Student @ HKU</span>
+            </div>
 
-      <section>
-        <h2>Research Experience</h2>
-        <div class="item">
-          <div class="left">
-            <strong
-              ><a href="https://xlang.ai"
-                >XLANG NLP Lab, The University of Hong Kong</a
-              ></strong
-            >
-          </div>
-          <div class="right">Hong Kong</div>
+            <h1 class="text-7xl md:text-9xl font-bold mb-6 kinetic-text">
+                <span style="animation-delay: 0s">D</span><span style="animation-delay: 0.05s">u</span><span style="animation-delay: 0.1s">n</span><span style="animation-delay: 0.15s">j</span><span style="animation-delay: 0.2s">i</span><span style="animation-delay: 0.25s">e</span>
+                <span style="animation-delay: 0.3s"> </span>
+                <span style="animation-delay: 0.35s" class="gradient-text">L</span><span style="animation-delay: 0.4s" class="gradient-text">u</span>
+            </h1>
+
+            <p class="text-2xl md:text-3xl text-gray-300 mb-4 font-light scroll-reveal">
+                Computer Vision & NLP Researcher
+            </p>
+
+            <p class="text-lg md:text-xl text-gray-400 mb-12 scroll-reveal" style="animation-delay: 0.2s">
+                Specializing in Computer-Use Agents & Vision-Language Models
+            </p>
+
+            <div class="flex flex-wrap justify-center gap-4 scroll-reveal" style="animation-delay: 0.4s">
+                <a href="mailto:ludj1219@gmail.com" class="glass px-6 py-3 rounded-full hover-lift flex items-center gap-2">
+                    <i class="fas fa-envelope text-purple-400"></i>
+                    <span>ludj1219@gmail.com</span>
+                </a>
+                <a href="https://github.com/ludunjie1219" target="_blank" class="glass px-6 py-3 rounded-full hover-lift flex items-center gap-2">
+                    <i class="fab fa-github text-purple-400"></i>
+                    <span>GitHub</span>
+                </a>
+                <a href="tel:+8615914502226" class="glass px-6 py-3 rounded-full hover-lift flex items-center gap-2">
+                    <i class="fas fa-phone text-purple-400"></i>
+                    <span>+86 159-1450-2226</span>
+                </a>
+            </div>
         </div>
-        <div class="item">
-          <div class="left">Research Assistant to Prof. Tao Yu</div>
-          <div class="right">07/2024 &ndash; Present</div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2">
+            <div class="w-6 h-10 border-2 border-purple-400 rounded-full flex justify-center">
+                <div class="w-1 h-2 bg-purple-400 rounded-full mt-2 animate-bounce"></div>
+            </div>
         </div>
-        <p>Topic: <strong>Multimodal Computer-Use Agents</strong></p>
-      </section>
+    </section>
 
-      <section>
-        <h2>Projects</h2>
-        <div class="item">
-          <div class="left">
-            <a href="https://github.com/xlang-ai/OSWorld">OSWorld</a>:
-            Benchmarking Multimodal Agents for Open-Ended Tasks in Real Computer
-            Environments
-          </div>
-          <div class="right">06/2024 &ndash; Present</div>
+    <!-- Education Section -->
+    <section id="education" class="py-32 relative">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="text-5xl md:text-6xl font-bold mb-20 scroll-reveal">
+                <span class="gradient-text">Education</span>
+            </h2>
+
+            <div class="space-y-8">
+                <!-- HKU -->
+                <div class="glass-strong p-8 rounded-3xl hover-lift scroll-reveal relative">
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-4 mb-4">
+                        <div>
+                            <h3 class="text-3xl font-bold text-purple-400 mb-2">The University of Hong Kong</h3>
+                            <p class="text-gray-400 flex items-center gap-2">
+                                <i class="fas fa-map-marker-alt"></i>
+                                Hong Kong
+                            </p>
+                        </div>
+                        <span class="text-gray-400 font-mono">06/2025 – Present</span>
+                    </div>
+                    <p class="text-xl text-gray-200 mb-2">Ph.D. in Computer and Data Science</p>
+                    <p class="text-gray-400">Advised by <a href="https://taoyds.github.io/" target="_blank" class="text-purple-400 link-underline">Prof. Tao Yu</a></p>
+                </div>
+
+                <!-- SYSU -->
+                <div class="glass-strong p-8 rounded-3xl hover-lift scroll-reveal relative">
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-4 mb-4">
+                        <div>
+                            <h3 class="text-3xl font-bold text-purple-400 mb-2">Sun Yat-sen University</h3>
+                            <p class="text-gray-400 flex items-center gap-2">
+                                <i class="fas fa-map-marker-alt"></i>
+                                Guangzhou, China
+                            </p>
+                        </div>
+                        <span class="text-gray-400 font-mono">09/2021 – 06/2025</span>
+                    </div>
+                    <p class="text-xl text-gray-200 mb-2">B.S. in Computer Science</p>
+                    <div class="inline-block glass px-4 py-2 rounded-full">
+                        <span class="text-green-400 font-semibold">Outstanding Graduate (Top 1%)</span>
+                    </div>
+                </div>
+            </div>
         </div>
-        <ul>
-          <li>
-            Established a comprehensive benchmark framework with 369 diverse
-            real-world tasks in an authentic operating system environment.
-          </li>
-          <li>
-            Engineered a scalable Docker-based testing infrastructure with
-            parallel execution capabilities, achieving 8x throughput improvement
-            in agent evaluation.
-          </li>
-        </ul>
-      </section>
+    </section>
 
-      <section>
-        <h2>Internships</h2>
-        <div class="item">
-          <div class="left">
-            <strong
-              ><a href="https://github.com/QwenLM">Alibaba Qwen Team</a></strong
-            >, Beijing&middot;China
-          </div>
-          <div class="right">05/2025 &ndash; Present</div>
+    <!-- Internship Section -->
+    <section class="py-32 relative">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="text-5xl md:text-6xl font-bold mb-20 scroll-reveal">
+                <span class="gradient-text">Internship</span>
+            </h2>
+
+            <div class="glass-strong p-8 rounded-3xl hover-lift scroll-reveal">
+                <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-4 mb-4">
+                    <div>
+                        <h3 class="text-3xl font-bold text-purple-400 mb-2">
+                            <a href="https://github.com/QwenLM" target="_blank" class="link-underline">Alibaba Qwen Team</a>
+                        </h3>
+                        <p class="text-gray-400 flex items-center gap-2">
+                            <i class="fas fa-map-marker-alt"></i>
+                            Beijing, China
+                        </p>
+                    </div>
+                    <span class="text-gray-400 font-mono">05/2025 – Present</span>
+                </div>
+
+                <p class="text-gray-400 mb-6">Mentors: Binyuan Hui, Junyang Lin</p>
+
+                <div class="space-y-4">
+                    <div>
+                        <h4 class="text-xl font-bold text-white mb-3">Qwen3-VL</h4>
+                        <p class="text-gray-300 mb-4">Led model development for computer-use and GUI grounding capabilities.</p>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div class="glass p-4 rounded-xl">
+                                <div class="text-sm text-purple-400 font-semibold mb-2">Computer Use</div>
+                                <p class="text-gray-300 text-sm">Open-source SOTA on OSWorld and Windows Agent Arena</p>
+                            </div>
+                            <div class="glass p-4 rounded-xl">
+                                <div class="text-sm text-pink-400 font-semibold mb-2">GUI Grounding</div>
+                                <p class="text-gray-300 text-sm">SOTA on ScreenSpot Pro and OSWorldG</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <ul>
-          <li>Constructing Computer-use Agent System.</li>
-        </ul>
-      </section>
+    </section>
 
-      <section>
-        <h2>Selected Awards and Honors</h2>
-        <h3>Scholarships</h3>
-        <ul>
-          <li>National Scholarship &mdash; 12/2022</li>
-          <li>
-            SYSU Outstanding First-Class Scholarship &mdash; 12/2022, 12/2024
-          </li>
-          <li>SYSU Outstanding Second-Class Scholarship &mdash; 12/2023</li>
-        </ul>
-        <h3>Awards</h3>
-        <ul>
-          <li>
-            First Prize, China Undergraduate Mathematical Contest in Modeling
-            &mdash; 12/2023
-          </li>
-        </ul>
-      </section>
+    <!-- Publications Section -->
+    <section id="publications" class="py-32 relative">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="text-5xl md:text-6xl font-bold mb-20 scroll-reveal">
+                <span class="gradient-text">Publications</span>
+            </h2>
 
-      <section>
-        <h2>Additional Information</h2>
-        <h3>Research Interests</h3>
-        <ul>
-          <li>
-            Natural Language Processing &ndash; Large Language and
-            Vision-Language Models
-          </li>
-          <li>
-            Computer-Use Agents &ndash; Vision-Language models for real-world
-            computer tasks
-          </li>
-        </ul>
-        <h3>Skills</h3>
-        <ul>
-          <li>Deep Learning: PyTorch, Megatron-LM, vLLM, DeepSpeed</li>
-          <li>Programming Languages: Python, C++</li>
-        </ul>
-      </section>
-    </main>
+            <p class="text-gray-400 italic mb-12 scroll-reveal">* denotes equal contribution</p>
 
-    <footer class="container">
-      <p>&copy; 2025 Dunjie Lu</p>
+            <div class="space-y-6">
+                <!-- VideoAgentTrek -->
+                <div class="glass-strong p-8 rounded-3xl hover-lift scroll-reveal">
+                    <div class="flex flex-wrap gap-3 mb-4">
+                        <span class="glass px-4 py-2 rounded-full text-sm font-bold gradient-text">ICLR 2026</span>
+                        <a href="#" class="glass px-4 py-2 rounded-full text-sm hover:bg-purple-900 transition flex items-center gap-2">
+                            <i class="fas fa-file-pdf"></i> arXiv
+                        </a>
+                        <a href="#" class="glass px-4 py-2 rounded-full text-sm hover:bg-purple-900 transition flex items-center gap-2">
+                            <i class="fas fa-external-link-alt"></i> Page
+                        </a>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3">VideoAgentTrek: Computer Use Pretraining from Unlabeled Videos</h3>
+                    <p class="text-gray-300"><strong class="text-purple-400">Dunjie Lu</strong>, Yiheng Xu, Junli Wang, Haoyuan Wu, Xinyuan Wang, Zekun Wang, Junlin Yang, Hongjin Su, Jixuan Chen, Junda Chen, Yuchen Mao, Jingren Zhou, Junyang Lin, Binyuan Hui, Tao Yu</p>
+                </div>
+
+                <!-- Qwen3-VL -->
+                <div class="glass-strong p-8 rounded-3xl hover-lift scroll-reveal">
+                    <div class="flex flex-wrap gap-3 mb-4">
+                        <span class="glass px-4 py-2 rounded-full text-sm font-bold text-cyan-400">Core Contributor</span>
+                        <a href="#" class="glass px-4 py-2 rounded-full text-sm hover:bg-purple-900 transition flex items-center gap-2">
+                            <i class="fas fa-file-pdf"></i> arXiv
+                        </a>
+                        <a href="#" class="glass px-4 py-2 rounded-full text-sm hover:bg-purple-900 transition flex items-center gap-2">
+                            <i class="fas fa-external-link-alt"></i> Page
+                        </a>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3">Qwen3-VL Technical Report</h3>
+                    <p class="text-gray-300">Shuai Bai, Yuxuan Cai, Ruizhe Chen, ... , <strong class="text-purple-400">Dunjie Lu</strong>, ... , Jingren Zhou, Fan Zhou, Jing Zhou</p>
+                </div>
+
+                <!-- OpenCUA -->
+                <div class="glass-strong p-8 rounded-3xl hover-lift scroll-reveal">
+                    <div class="flex flex-wrap gap-3 mb-4">
+                        <span class="glass px-4 py-2 rounded-full text-sm font-bold gradient-text">NeurIPS 2025 Spotlight</span>
+                        <a href="https://opencua.xlang.ai/" class="glass px-4 py-2 rounded-full text-sm hover:bg-purple-900 transition flex items-center gap-2">
+                            <i class="fas fa-external-link-alt"></i> Page
+                        </a>
+                        <a href="#" class="glass px-4 py-2 rounded-full text-sm hover:bg-purple-900 transition flex items-center gap-2">
+                            <i class="fas fa-file-pdf"></i> arXiv
+                        </a>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3">OpenCUA: Open Foundations for Computer-Use Agents</h3>
+                    <p class="text-gray-300">Xinyuan Wang*, Bowen Wang*, <strong class="text-purple-400">Dunjie Lu*</strong>, Junlin Yang*, Tianbao Xie*, Junli Wang* ... Tao Yu</p>
+                </div>
+
+                <!-- AgentTrek -->
+                <div class="glass-strong p-8 rounded-3xl hover-lift scroll-reveal">
+                    <div class="flex flex-wrap gap-3 mb-4">
+                        <span class="glass px-4 py-2 rounded-full text-sm font-bold gradient-text">ICLR 2025 Spotlight</span>
+                        <a href="https://agenttrek.github.io/" class="glass px-4 py-2 rounded-full text-sm hover:bg-purple-900 transition flex items-center gap-2">
+                            <i class="fas fa-external-link-alt"></i> Page
+                        </a>
+                        <a href="https://openreview.net/forum?id=EEgYUccwsV" class="glass px-4 py-2 rounded-full text-sm hover:bg-purple-900 transition flex items-center gap-2">
+                            <i class="fas fa-file-pdf"></i> PDF
+                        </a>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3">AgentTrek: Agent Trajectory Synthesis via Guiding Replay with Web Tutorials</h3>
+                    <p class="text-gray-300">Yiheng Xu*, <strong class="text-purple-400">Dunjie Lu*</strong>, Zhennan Shen*, Junli Wang, Zekun Wang, Yuchen Mao, Caiming Xiong, Tao Yu</p>
+                </div>
+
+                <!-- Aguvis -->
+                <div class="glass-strong p-8 rounded-3xl hover-lift scroll-reveal">
+                    <div class="flex flex-wrap gap-3 mb-4">
+                        <span class="glass px-4 py-2 rounded-full text-sm font-bold text-orange-400">ICML 2025 Poster</span>
+                        <a href="https://aguvis-project.github.io/" class="glass px-4 py-2 rounded-full text-sm hover:bg-purple-900 transition flex items-center gap-2">
+                            <i class="fas fa-external-link-alt"></i> Page
+                        </a>
+                        <a href="https://openreview.net/forum?id=FHtHH4ulEQ" class="glass px-4 py-2 rounded-full text-sm hover:bg-purple-900 transition flex items-center gap-2">
+                            <i class="fas fa-file-pdf"></i> PDF
+                        </a>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3">Aguvis: Unified Pure Vision Agents for Autonomous GUI Interaction</h3>
+                    <p class="text-gray-300">Yiheng Xu*, Zekun Wang*, Junli Wang*, <strong class="text-purple-400">Dunjie Lu</strong>, Tianbao Xie, Amrita Saha, Doyen Sahoo, Tao Yu, Caiming Xiong</p>
+                </div>
+
+                <!-- OSWorld-Verified -->
+                <div class="glass-strong p-8 rounded-3xl hover-lift scroll-reveal">
+                    <div class="flex flex-wrap gap-3 mb-4">
+                        <span class="glass px-4 py-2 rounded-full text-sm font-bold text-gray-400">Project</span>
+                        <a href="#" class="glass px-4 py-2 rounded-full text-sm hover:bg-purple-900 transition flex items-center gap-2">
+                            <i class="fas fa-external-link-alt"></i> Page
+                        </a>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3">OSWorld-Verified</h3>
+                    <p class="text-gray-300">A refined benchmark for evaluating computer-use agents with verified tasks and standardized evaluation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Awards Section -->
+    <section id="awards" class="py-32 relative">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="text-5xl md:text-6xl font-bold mb-20 scroll-reveal">
+                <span class="gradient-text">Awards & Honors</span>
+            </h2>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="glass-strong p-8 rounded-3xl hover-lift scroll-reveal text-center">
+                    <div class="text-6xl mb-4">
+                        <i class="fas fa-medal gradient-text"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-2">National Scholarship</h3>
+                    <p class="text-gray-400">December 2022</p>
+                </div>
+
+                <div class="glass-strong p-8 rounded-3xl hover-lift scroll-reveal text-center">
+                    <div class="text-6xl mb-4">
+                        <i class="fas fa-award gradient-text"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-2">SYSU Outstanding Scholarship</h3>
+                    <p class="text-gray-400">2022, 2023, 2024</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-purple-900/30">
+        <div class="max-w-6xl mx-auto px-6 text-center">
+            <p class="text-gray-400 mb-2">&copy; 2025 Dunjie Lu. All rights reserved.</p>
+            <p class="text-gray-500 text-sm italic">Built with passion for research and innovation</p>
+        </div>
     </footer>
+
     <script src="script.js"></script>
-  </body>
+</body>
 </html>
