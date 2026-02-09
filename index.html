@@ -105,7 +105,7 @@
             grid-template-columns: 2fr 1fr;
             gap: 40px;
             margin-bottom: 60px;
-            align-items: start;
+            align-items: center;
         }
 
         .intro-text h1 {
@@ -139,7 +139,7 @@
 
         .profile-photo {
             width: 100%;
-            max-width: 300px;
+            max-width: 220px;
             border-radius: 12px;
             overflow: hidden;
         }
@@ -208,7 +208,7 @@
         .timeline-icon img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
         }
 
         .timeline-content h3 {
@@ -347,7 +347,10 @@
             <nav>
                 <div class="nav-links">
                     <a href="#about">About</a>
+                    <a href="#experience">Experience</a>
+                    <a href="#education">Education</a>
                     <a href="#publications">Publications</a>
+                    <a href="#awards">Awards</a>
                 </div>
                 <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
                     ☀️
@@ -370,15 +373,8 @@
                     Science and Technology at <a href="https://www.sysu.edu.cn/" target="_blank">Sun Yat-sen University</a>.
                 </p>
 
-                <p>
-                    My long-term research goal is to build autonomous computer-use agents that can 1) understand open-ended
-                    natural language (or even multi-modal) instructions; 2) observe the wild GUI environment (OS, Mobile and more)
-                    with grounded knowledge; 3) generate executable steps (e.g. atomic actions, system shortcuts, codes, etc.)
-                    iteratively to finalize the task.
-                </p>
-
                 <div class="social-links">
-                    <a href="https://scholar.google.com/citations?user=YOUR_ID" target="_blank">
+                    <a href="https://scholar.google.com/citations?user=Etp3Eb8AAAAJ&hl=en" target="_blank">
                         <svg viewBox="0 0 24 24" fill="currentColor">
                             <path d="M12 24a7 7 0 110-14 7 7 0 010 14zm0-24L0 9.5l4.838 3.94A8 8 0 0112 9a8 8 0 017.162 4.44L24 9.5z"/>
                         </svg>
@@ -400,10 +396,7 @@
             </div>
 
             <div class="profile-photo">
-                <!-- Placeholder for profile photo - you can add your photo here -->
-                <div style="width: 100%; height: 300px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 48px; font-weight: bold;">
-                    DL
-                </div>
+                <img src="images/profile.jpg" alt="Dunjie Lu">
             </div>
         </section>
 
@@ -412,9 +405,7 @@
 
             <div class="timeline-item">
                 <div class="timeline-icon">
-                    <div style="width: 100%; height: 100%; background: #FF6A00; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">
-                        阿里
-                    </div>
+                    <img src="images/qwen.png" alt="Qwen">
                 </div>
                 <div class="timeline-content">
                     <h3>Qwen Team, Alibaba Group</h3>
@@ -433,9 +424,7 @@
 
             <div class="timeline-item">
                 <div class="timeline-icon">
-                    <div style="width: 100%; height: 100%; background: #004B87; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 20px;">
-                        HKU
-                    </div>
+                    <img src="images/hku.jpg" alt="HKU">
                 </div>
                 <div class="timeline-content">
                     <h3>The University of Hong Kong</h3>
@@ -447,9 +436,7 @@
 
             <div class="timeline-item">
                 <div class="timeline-icon">
-                    <div style="width: 100%; height: 100%; background: #006341; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 18px;">
-                        中大
-                    </div>
+                    <img src="images/sysu.png" alt="SYSU">
                 </div>
                 <div class="timeline-content">
                     <h3>Sun Yat-sen University</h3>
@@ -475,8 +462,8 @@
                     <span class="publication-venue">ICLR'26</span>
                 </div>
                 <div class="publication-links">
-                    <a href="#">[Website]</a>
-                    <a href="#">[arXiv]</a>
+                    <a href="https://videoagenttrek.github.io/" target="_blank">[Website]</a>
+                    <a href="https://arxiv.org/abs/2510.19488" target="_blank">[arXiv]</a>
                 </div>
             </div>
 
@@ -491,8 +478,7 @@
                     <span class="publication-venue">Core Contributor</span>
                 </div>
                 <div class="publication-links">
-                    <a href="#">[Website]</a>
-                    <a href="#">[arXiv]</a>
+                    <a href="https://arxiv.org/abs/2511.21631" target="_blank">[arXiv]</a>
                 </div>
             </div>
 
@@ -507,8 +493,8 @@
                     <span class="publication-venue spotlight">NeurIPS'25 (Spotlight)</span>
                 </div>
                 <div class="publication-links">
-                    <a href="https://opencua.xlang.ai/">[Website]</a>
-                    <a href="#">[arXiv]</a>
+                    <a href="https://opencua.xlang.ai/" target="_blank">[Website]</a>
+                    <a href="https://arxiv.org/abs/2508.09123" target="_blank">[arXiv]</a>
                 </div>
             </div>
 
@@ -546,16 +532,16 @@
 
             <div class="publication">
                 <div class="publication-title">
-                    OSWorld-Verified: Introducing OSWorld-Verified
+                    OSWorld-Verified
                 </div>
                 <div class="publication-authors">
-                    A refined benchmark for evaluating computer-use agents with verified tasks and standardized evaluation.
+                    Tianbao Xie, Mingyang Yuan, Danyang Zhang, Zhennan Shen, Zhicheng Zhou, Xinyuan Wang, Yichen Chen, ... , <strong>Dunjie Lu</strong>, ... , Tao Yu
                 </div>
                 <div>
                     <span class="publication-venue">Project</span>
                 </div>
                 <div class="publication-links">
-                    <a href="#">[Website]</a>
+                    <a href="https://xlang.ai/blog/osworld-verified" target="_blank">[Website]</a>
                 </div>
             </div>
         </section>
@@ -571,7 +557,7 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2025 Dunjie Lu. All rights reserved.</p>
+            <p>&copy; 2026 Dunjie Lu. All rights reserved.</p>
         </div>
     </footer>
 
