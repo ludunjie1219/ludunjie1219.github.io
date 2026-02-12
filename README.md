@@ -4,5 +4,4 @@ Personal site for Dunjie Lu.
 
 ## Fancy Mode
 
-Click the magic wand button to switch to a colorful theme.
-
+Click the sun/moon button to switch between light and dark themes.
