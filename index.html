@@ -5,6 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dunjie Lu - Homepage</title>
     <meta name="description" content="Dunjie Lu - Ph.D. student at The University of Hong Kong, researching Computer-Use Agents and Vision-Language Models">
+    <meta name="author" content="Dunjie Lu">
+    <link rel="canonical" href="https://ludunjie1219.github.io/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Dunjie Lu - Homepage">
+    <meta property="og:description" content="Ph.D. student at The University of Hong Kong, researching computer-use agents and vision-language models.">
+    <meta property="og:url" content="https://ludunjie1219.github.io/">
+    <meta property="og:image" content="https://ludunjie1219.github.io/images/profile-optimized.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Dunjie Lu - Homepage">
+    <meta name="twitter:description" content="Ph.D. student at The University of Hong Kong, researching computer-use agents and vision-language models.">
+    <meta name="twitter:image" content="https://ludunjie1219.github.io/images/profile-optimized.jpg">
 
     <style>
         :root {
@@ -94,6 +105,15 @@
 
         .theme-toggle:hover {
             background: var(--hover-bg);
+        }
+
+        .theme-toggle:focus-visible,
+        .nav-links a:focus-visible,
+        .social-links a:focus-visible,
+        .publication-links a:focus-visible {
+            outline: 2px solid var(--accent-color);
+            outline-offset: 2px;
+            border-radius: 6px;
         }
 
         /* Main Content */
@@ -393,11 +413,23 @@
                         </svg>
                         Google Scholar
                     </a>
+                    <a href="https://www.semanticscholar.org/author/Dunjie-Lu/2334211453" target="_blank" rel="noopener noreferrer">
+                        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <path d="M4 3h9a4 4 0 0 1 4 4v14H8a4 4 0 0 0-4 0V3zm13 18h3V7a4 4 0 0 0-4-4h-1.08A5.96 5.96 0 0 1 17 7v14zM8 9h6v2H8V9zm0 4h6v2H8v-2z"/>
+                        </svg>
+                        Semantic Scholar
+                    </a>
                     <a href="https://github.com/ludunjie1219" target="_blank" rel="noopener noreferrer">
                         <svg viewBox="0 0 24 24" fill="currentColor">
                             <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
                         </svg>
                         GitHub
+                    </a>
+                    <a href="resume.pdf" target="_blank" rel="noopener noreferrer">
+                        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <path d="M6 2h9l5 5v15a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm8 1.5V8h4.5L14 3.5zM8 12h8v2H8v-2zm0 4h8v2H8v-2z"/>
+                        </svg>
+                        CV (PDF)
                     </a>
                     <a href="mailto:ludj1219@gmail.com">
                         <svg viewBox="0 0 24 24" fill="currentColor">
@@ -409,7 +441,7 @@
             </div>
 
             <div class="profile-photo">
-                <img src="images/profile.jpg" alt="Dunjie Lu">
+                <img src="images/profile-optimized.jpg" alt="Dunjie Lu" width="817" height="1000" fetchpriority="high">
             </div>
         </section>
 
@@ -418,7 +450,7 @@
 
             <div class="timeline-item">
                 <div class="timeline-icon">
-                    <img src="images/qwen.png" alt="Qwen">
+                    <img src="images/qwen.png" alt="Qwen" loading="lazy" decoding="async">
                 </div>
                 <div class="timeline-content">
                     <h3>Qwen Team, Alibaba Group</h3>
@@ -437,7 +469,7 @@
 
             <div class="timeline-item">
                 <div class="timeline-icon">
-                    <img src="images/hku.jpg" alt="HKU">
+                    <img src="images/hku.jpg" alt="HKU" loading="lazy" decoding="async">
                 </div>
                 <div class="timeline-content">
                     <h3>The University of Hong Kong</h3>
@@ -449,7 +481,7 @@
 
             <div class="timeline-item">
                 <div class="timeline-icon">
-                    <img src="images/sysu.png" alt="SYSU">
+                    <img src="images/sysu.png" alt="SYSU" loading="lazy" decoding="async">
                 </div>
                 <div class="timeline-content">
                     <h3>Sun Yat-sen University</h3>
@@ -522,8 +554,8 @@
                     <span class="publication-venue spotlight">ICLR'25 (Spotlight)</span>
                 </div>
                 <div class="publication-links">
-                    <a href="https://agenttrek.github.io/">[Website]</a>
-                    <a href="https://openreview.net/forum?id=EEgYUccwsV">[PDF]</a>
+                    <a href="https://agenttrek.github.io/" target="_blank" rel="noopener noreferrer">[Website]</a>
+                    <a href="https://openreview.net/forum?id=EEgYUccwsV" target="_blank" rel="noopener noreferrer">[PDF]</a>
                 </div>
             </div>
 
@@ -538,8 +570,8 @@
                     <span class="publication-venue">ICML'25 (Poster)</span>
                 </div>
                 <div class="publication-links">
-                    <a href="https://aguvis-project.github.io/">[Website]</a>
-                    <a href="https://openreview.net/forum?id=FHtHH4ulEQ">[PDF]</a>
+                    <a href="https://aguvis-project.github.io/" target="_blank" rel="noopener noreferrer">[Website]</a>
+                    <a href="https://openreview.net/forum?id=FHtHH4ulEQ" target="_blank" rel="noopener noreferrer">[PDF]</a>
                 </div>
             </div>
 
@@ -580,21 +612,25 @@
         const html = document.documentElement;
 
         // Load saved theme
-        const savedTheme = localStorage.getItem('theme') || 'light';
-        html.setAttribute('data-theme', savedTheme);
-        updateThemeIcon(savedTheme);
+        const savedTheme = localStorage.getItem('theme');
+        const preferredTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        const currentTheme = savedTheme || preferredTheme;
+        html.setAttribute('data-theme', currentTheme);
+        updateThemeButton(currentTheme);
 
         themeToggle.addEventListener('click', () => {
-            const currentTheme = html.getAttribute('data-theme');
-            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            const activeTheme = html.getAttribute('data-theme');
+            const newTheme = activeTheme === 'light' ? 'dark' : 'light';
 
             html.setAttribute('data-theme', newTheme);
             localStorage.setItem('theme', newTheme);
-            updateThemeIcon(newTheme);
+            updateThemeButton(newTheme);
         });
 
-        function updateThemeIcon(theme) {
+        function updateThemeButton(theme) {
             themeToggle.textContent = theme === 'light' ? '☀️' : '🌙';
+            themeToggle.setAttribute('aria-pressed', theme === 'dark' ? 'true' : 'false');
+            themeToggle.setAttribute('aria-label', theme === 'light' ? 'Switch to dark theme' : 'Switch to light theme');
         }
 
         // Smooth scroll
